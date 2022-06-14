@@ -1,0 +1,152 @@
+[workdir]
+# Change the absolute path currently in use
+work_dir = /cluster/huanglab/hhuang/project/Cancer_dev/Liver/OF-scRNA
+
+# dir for save results of findoncofetal
+identification_dir = %(work_dir)s/1.Identification
+
+# dir for save results of findgene
+genesimi_dir = %(work_dir)s/2.Gene
+
+# dir for save results of findgrn
+grnsimi_dir = %(work_dir)s/3.GRN
+
+
+ccc_dir = %(work_dir)s/4.CCC
+
+
+trajectory_dir = %(work_dir)s/5.Trajectory
+clinical_dir = %(work_dir)s/6.Clinical
+script_dir = %(work_dir)s/code
+data_path = %(work_dir)s/data
+
+
+[Extract]
+total_data_path = HCC14F1F2.h5ad
+anno_col = cluster_celltype_abbr
+celltype_interest = Fibro
+batch_col = batch
+batch = None
+
+
+[scanpy]
+data_path = Fibro.h5ad
+csv_path = /scanpy2seurat
+min_mean = 0.0125
+max_mean = 3
+min_disp = 0.5
+n_comps = 300
+show_var = True
+show_pc = 100
+
+[CSS]
+css_script = /code/CSS.R
+batch_tag = batch
+css_cluster_resolution = 0.5
+seurat_resolution = 0.5
+k_neighbor = 15
+
+
+[findOncofetal]
+data_path = Fibro_css_type.h5ad
+batch_col = batch
+anno_col = subtype
+width = 8
+height = 4
+save = /final_data
+convert_script = convert.R
+
+
+[genesimilarity]
+genesimi_script = /code/genesimilarity.R
+tn_markers = tn-top50-markers.csv
+fetal_markers = fetal-top50-markers.csv
+full_tn_markers = full-tn-top50-markers.csv
+full_fetal_markers = full-fetal-top50-markers.csv
+tumor_query = mCAF
+fetal_ref = Fetal_mFibro
+top_n = 50
+
+[grnsimilarity]
+grnsimi_script = grnsimilarity.R
+run_SCENIC = no
+dbDir = /cluster/huanglab/hhuang/Database/SCENIC/hg38/
+input = /Fibro_final.rds
+n_cores = 10
+minCountsPerGene_rate = 0.001
+minSamples_rate = 0.01
+height = 10
+width = 8
+
+
+
+[CCC]
+run_Cellchat = no
+tumor_data = tumor_data.rds
+normal_data = normal_data.rds
+fetal_data = fetal_data.rds
+tumor_type = mCAF
+normal_type = apFibro
+fetal_type = Fetal_mFibro
+
+group_by = cellchat_subtype_abbr
+cellchat_type = truncatedMean
+trim = 0.1
+
+CCCscript = CCCsimilarity.R
+
+[drive]
+drive_script = drive.R
+data = HCC14F1F2.rds
+sender = Hepa
+receiver = Fibro
+
+ligand_target_matrix = ligand_target_matrix.Rdata
+lr_network = lr_network.Rdata
+weighted_networks = weighted_networks.Rdata
+label = cluster_celltype_abbr
+lfc_cutoff = 0.5
+condition_colname = NormalvsTumor
+condition_oi = Tumor
+condition_reference = Normal
+organism = human
+width = 15
+height = 8
+
+
+[trajectory]
+spliced_path = spliced.csv
+unspliced_path = unspliced.csv
+meta_path = metadata.csv
+embedding_path = cell_embeddings.csv
+min_shared_counts = 5
+n_top_genes = 1000
+n_neighbors = 30
+n_pcs = 30
+mode = stochastic
+basis = umap
+color = subtype
+alpha = 0.6
+title = Steady state RNA velocity
+min_corr = 0.3
+save = velocity
+
+
+
+
+[Clinical]
+clinical_script = Clinical.R
+oncofetal = oncofetal.csv
+
+data_rna = data_rna.rds
+data_surv = data_surv.rds
+data_tag = TCGA
+
+
+
+
+
+
+
+
+
