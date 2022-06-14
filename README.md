@@ -13,57 +13,25 @@ OF-scRNA is a framework designed to answer the following questions:
 - Is there clinical translation value of fetal-like features?
 
 ## Installation
-We wrapped the OF-scRNA framework as a command line program: **OF-scRNA.py**
+We wrapped the OF-scRNA framework as a command line program: **OF-scRNA.py**<br />
+You can download it via:
+```bash
+git clone https://github.com/xmuhuanglab/OF-scRNA.git
 ```
-git clone 
-
+We also wrapped the docker image for the program to run:
+```bash
+docker pull huaqianghuang/of-scrna
 ```
-
-
 
 ## Usage
 
-### 1. Copy the demo data and script (.tgz) 
+### 1. Build the container to run OF-scRNA
 
 > You must modify the contents of [XXXXXXX]
 
 ```bash
-cp /cluster/huanglab/hhuang/project/Cancer_dev/Liver/OF-scRNA/tmp/demo.tgz [your_dir_to_save]
-
-# eg. cp /cluster/huanglab/hhuang/project/Cancer_dev/Liver/OF-scRNA/tmp/demo.tgz ./tmp/
-```
-
-### 2. Unzip the file
-
-```bash
-tar -zxvf demo.tgz
-```
-
-**output:** /OF-scRNA/
-
-**OF-scRNA.py**: the command line program to run
-
-**of-scrna.tar**: the docker image
-
-**code**: Rscript of the OF-scRNA framework
-
-**Other directories**: some data
-
-### 3. Build the container to run OF-scRNA
-
-> You must modify the contents of [XXXXXXX]
-
-```bash
-cd OF-scRNA/
-
-# You need to run docker in node2!!! Something is wrong with the node1 file system, can't write h5ad files
-# You must have access to docker
-# su docker-lab
-# tugU6WScPq
-docker load -i of-scrna.tar
-
 # -v host_folder:container_folder  | Mount the host folder
-docker run --name=of -dit -p 8001:8001 -h of --restart unless-stopped -v [/the_absolute_path_you_unzip_the_.tgz]:/cluster/huanglab/hhuang/project/Cancer_dev/Liver/OF-scRNA/ of-scrna:0.1
+docker run --name=of -dit -p 8001:8001 -h of --restart unless-stopped -v [/host_folder]:/cluster/huanglab/hhuang/project/Cancer_dev/Liver/OF-scRNA/ huaqianghuang/of-scrna
 
 # Now you enter the container
 docker exec -it of bash
@@ -72,7 +40,7 @@ docker exec -it of bash
 cd /cluster/huanglab/hhuang/project/Cancer_dev/Liver/OF-scRNA/
 ```
 
-### 4. Workflow of OF-scRNA
+### 2. Workflow of OF-scRNA
 
 #### Usage of OF-scRNA.py
 
@@ -85,13 +53,11 @@ python OF-scRNA.py [modulename] -h
 python OF-scRNA.py findoncofetal -p ./parameters/parameters.txt
 ```
 
+#### 2.1 Identification of onco-fetal cells
 
+Cells that **specifically enrich in tumors** and **resemble fetal cells** were defined as candidate **onco-fetal cells**
 
-#### 4.1 Identification of oncofetal cells
-
-Cells that **specifically enrich in tumors** and **resemble fetal cells** were defined as candidate **oncofetal cells**
-
-So, we use two score to identify oncofetal cells
+So, we use two score to identify onco-fetal cells
 
 **relative enrichment score**: specifically enrich in tumor
 
@@ -113,15 +79,16 @@ So, we use two score to identify oncofetal cells
 Anndata object, have log normalize expression matrix, high variable genes and PCA, CSS (X_css dimension), batch label, subtype label
 
 ```bash
-# 4. To examine whether there are oncofetal cells
+# 4. To examine whether there are onco-fetal cells
 python OF-scRNA.py findoncofetal -p ./parameters/parameters.txt
 ```
 
 **output:** /1.Identification/
 
 **FindOncofetal.pdf**: Heatmap display relative enrichment score and connectivity score
-
-![image-20220512145929938](https://s2.loli.net/2022/05/12/2Pjs9JlFTxz3CQI.png)
+<div align=center>
+<img src="https://s2.loli.net/2022/05/12/2Pjs9JlFTxz3CQI.png"/>
+</div>
 
 **relative_enrichment.csv**: The data to plot heatmap of relative enrichment score
 
@@ -131,9 +98,7 @@ python OF-scRNA.py findoncofetal -p ./parameters/parameters.txt
 
 **Fibro_final.h5ad**: The anndata object after calculate connectivity score
 
-
-
-#### 4.2 Characterization of oncofetal cells through transcriptional program
+#### 2.2 Characterization of onco-fetal cells through transcriptional program
 
 To evaluate the similarity of transcriptional program between mCAF and Fetal mFibro and find shared genes
 
@@ -150,7 +115,9 @@ python OF-scRNA.py findgene -p ./parameters/parameters.txt
 
 **top50-markers-jaccard.pdf**: Jaccard similarity (top) of top50 markers from fetal enriched subtypes (y axis) with top50 markers of tumor or adjacent normal enriched subtypes (x axis)
 
-![image-20220512150441344](https://s2.loli.net/2022/05/12/IdGU5zZpjqcfAF7.png)
+<div align=center>
+<img src="https://s2.loli.net/2022/05/12/IdGU5zZpjqcfAF7.png"/>
+</div>
 
 **tn-top50-markers.csv**: top50 differentially express genes between adult tissue subtypes, only gene name
 
@@ -160,15 +127,13 @@ python OF-scRNA.py findgene -p ./parameters/parameters.txt
 
 **full-fetal-top50-markers.csv**: top50 differentially express genes between fetal tissue subtypes, contains gene name, pvalue, logFC, score (criteria to choose top50)
 
-**overlap_genes.csv**: Overlapping genes of differentially express genes from oncofetal cells and its corresponding fetal cells
+**overlap_genes.csv**: Overlapping genes of differentially express genes from onco-fetal cells and its corresponding fetal cells
 
-**oncofetal.csv**: The oncofetal signature
+**oncofetal.csv**: The onco-fetal signature
 
-**non_oncofetal.csv**: The non oncofetal signature
+**non_oncofetal.csv**: The non onco-fetal signature
 
-
-
-#### 4.3 Characterization of oncofetal cells through gene regulatory networks
+#### 2.3 Characterization of onco-fetal cells through gene regulatory networks
 
 To better understand the onset of embryonic reprogramming of tumor cells and find the shared TFs
 
@@ -185,20 +150,20 @@ python OF-scRNA.py findgrn -p ./parameters/parameters.txt
 **output:** /3.GRN
 
 **correlation-heatmap.pdf**: Correlation of binary regulon activity percentage between each subtype. 
+<div align="center">
+<img src="https://s2.loli.net/2022/05/12/jwgoNthKI13Hdn2.png">
+</div>
 
-![image-20220512200937380](https://s2.loli.net/2022/05/12/jwgoNthKI13Hdn2.png)
-
-**RSS-filtering.pdf**: Dot plot shows regulons that oncofetal cells or its corresponding fetal cells turn on after filtering regulator specific score
-
-![image-20220512200957658](https://s2.loli.net/2022/05/12/gHSkCODsQYT28oG.png)
+**RSS-filtering.pdf**: Dot plot shows regulons that onco-fetal cells or its corresponding fetal cells turn on after filtering regulator specific score
+<div align="center">
+<img src="https://s2.loli.net/2022/05/12/gHSkCODsQYT28oG.png">
+</div>
 
 **rss-table.csv**: Dataframe of the regulon specific score of each regulon in each subtype
 
+#### 2.4 Characterization of onco-fetal cells through Cellular communication
 
-
-#### 4.4 Characterization of oncofetal cells through Cellular communication
-
-To investigate how fetal signals reacquired by oncofetal cells affect TME
+To investigate how fetal signals reacquired by onco-fetal cells affect TME
 
 **Input:**
 
@@ -215,38 +180,40 @@ python OF-scRNA.py findccc -p ./parameters/parameters.txt
 
 **tumor.cellchat.final.rds, normal.cellchat.final.rds, fetal.cellchat.final.rds**: The CellChat object after run cellchat workflow
 
-**outgoing-compare.pdf**: Number of significant ligand-receptor pairs from oncofetal_cells/normal_cells/corresponding_fetal_cells to other cells in different sample origin. The edge width is proportional to the indicated number of ligand-receptor pairs.
+**outgoing-compare.pdf**: Number of significant ligand-receptor pairs from onco-fetal_cells/normal_cells/corresponding_fetal_cells to other cells in different sample origin. The edge width is proportional to the indicated number of ligand-receptor pairs.
 
-![image-20220512201058956](https://s2.loli.net/2022/05/12/SaXUVg24xl3RrQw.png)
+<div align="center">
+<img src="https://s2.loli.net/2022/05/12/SaXUVg24xl3RrQw.png">
+</div>
 
-**LR-bubble.pdf**: Dot plot of shared ligand-receptors of oncofetal cells and its corresponding fetal cells. 
+**LR-bubble.pdf**: Dot plot of shared ligand-receptors of onco-fetal cells and its corresponding fetal cells. 
+<div align="center">
+<img src="https://user-images.githubusercontent.com/95668602/173576366-44d5f4ba-27c0-487f-b6c2-2f3f22dde12d.png" width="500px"><img src="https://user-images.githubusercontent.com/95668602/173576558-b5aabb5c-6d1b-41d6-8cb9-1edd13826182.png" width="500px">
+</div>
 
+#### 2.5 Regulation
 
-
-#### 4.5 Regulation
-
-To investigate whether hepatocytes can induce reprogramming of oncofetal cells
+To investigate whether hepatocytes can induce reprogramming of onco-fetal cells
 
 **Input:**
 
 Seurat object, total cells, have log normalize expression matrix, celltype label, batch label
 
 ```bash
-# 8. find which celltype drive the oncofetal reprogramming
+# 8. find which celltype drive the onco-fetal reprogramming
 python OF-scRNA.py drive -p ./parameters/parameters.txt
 ```
 
 **output:** /4.CCC/
 
 **Hepa_Fibro_ligand_activity_target.pdf**: Heatmap shows the regulatory potential of hepatocyte's gene regulate fibroblast gene
+<div align="center">
+<img src="https://s2.loli.net/2022/05/12/X2Vw3ShGKbDnyB4.png">
+</div>
 
-![image-20220512201159447](https://s2.loli.net/2022/05/12/X2Vw3ShGKbDnyB4.png)
+#### 2.6 Trajectory inference
 
-
-
-#### 4.6 Trajectory inference
-
-To investigate the potetion origin of oncofetal cells
+To investigate the potetion origin of onco-fetal cells
 
 **Input:**
 
@@ -259,38 +226,37 @@ cell_embeddings.csv: Before UMAP
 metadata.csv: cellinfo, such as subtype label
 
 ```bash
-# 9. find the potential origin of oncofetal cells
+# 9. find the potential origin of onco-fetal cells
 python OF-scRNA.py trajectory -p ./parameters/parameters.txt
 ```
 
 **output:** /5.Trajectory/
 
 **scvelo_velocity.png**: Steady state RNA velocity of tumor and adjacent normal fibroblasts
-
-![image-20220512201252187](https://s2.loli.net/2022/05/12/mEUkFpicjJQzZfC.png)
+<div align="center">
+<img src="https://s2.loli.net/2022/05/12/mEUkFpicjJQzZfC.png">
+</div>
 
 **scvelo_diff_genes.csv**: The differentially regulated genes of each subtpye
 
+#### 2.7 Clinical relevance of onco-fetal cells
 
-
-#### 4.7 Clinical relevance of oncofetal cells
-
-To inverstigate the clinical relevance of oncofetal cells
+To inverstigate the clinical relevance of onco-fetal cells
 
 **Input:**
 
 1. Bulk rna data (gene in row, patient in column)
 2. Clinical information (have overall survival (time), state )
-3. Oncofetal signature
+3. Onco-fetal signature
 
 ```bash
-# 10. evaluate the clinical relevance of oncofetal signature
+# 10. evaluate the clinical relevance of onco-fetal signature
 python OF-scRNA.py clinical -p ./parameters/parameters.txt
 ```
 
 **output:** /6.Clinical/
 
 **oncofetal-gsva-TCGA-KM-plot.pdf**: Kaplan-Meier curves for overall survival of HCC patients in the TCGA ( cohort stratified by GSVA score of mCAF onco-fetal signature. The p value was calculated by the log-rank test.
-
-![image-20220512201319399](https://s2.loli.net/2022/05/12/a9s1lzxqguVkMUO.png)
-</font>
+<div align="center">
+<img src="https://s2.loli.net/2022/05/12/a9s1lzxqguVkMUO.png">
+</div>
