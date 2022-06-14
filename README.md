@@ -1,14 +1,24 @@
 # OF-scRNA
 
-<div align=center><img src="https://user-images.githubusercontent.com/95668602/173528440-d558a8cb-ee50-41ec-a1aa-7b993e65b032.png"/></div>
+<div align=center>
+<img src="https://user-images.githubusercontent.com/95668602/173569851-05147ce0-347a-4c2d-98f8-c3e753ac05c9.png" width="400px"/>
+</div>
 
 **A framework to identify and characterize oncofetal cells of tumor microenvironment based on single-cell RNA sequencing: a case study for hepatocellular carcinoma**
 
 ## Overview
-OF-scRNA is a framework designed to answer the following questions
+OF-scRNA is a framework designed to answer the following questions:
 - Are there onco-fetal cells in the tumor?
-- What are the similarities between onco-fetal cells and fetal cells? Why do onco-fetal cells reacquire fetal similarities? Where the onco-fetal cells come from?
-- 
+- What are the similarities between onco-fetal cells and fetal cells? Why do onco-fetal cells reacquire fetal similarities? Which cells are transformed into onco-fetal cells?
+- Is there clinical translation value of fetal-like features?
+
+## Installation
+We wrapped the OF-scRNA framework as a command line program: **OF-scRNA.py**
+```
+git clone 
+
+```
+
 
 
 ## Usage
