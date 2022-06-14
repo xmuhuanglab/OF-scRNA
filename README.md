@@ -8,7 +8,7 @@
 OF-scRNA is a framework designed to answer the following questions
 - Are there onco-fetal cells in the tumor?
 - What are the similarities between onco-fetal cells and fetal cells? Why do onco-fetal cells reacquire fetal similarities? Where the onco-fetal cells come from?
-- <font size=100>妈的</font>
+- 
 
 
 ## Usage
