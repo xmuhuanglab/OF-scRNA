@@ -29,7 +29,11 @@ We also wrapped the docker image for the program to run:
 docker pull huaqianghuang/of-scrna:0.1
 ```
 
-Data in 
+**Data** in https://drive.google.com/file/d/14mXXtO-InZcQbqlUq157fKXrhM39CVs9/view?usp=sharing.
+You have to download it in OF-scRNA-main folder and unzip it via:
+```bash
+tar -zvxf data.tgz
+```
 
 ## Usage
 
