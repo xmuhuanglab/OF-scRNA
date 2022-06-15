@@ -97,7 +97,7 @@ CCCscript = CCCsimilarity.R
 
 [drive]
 drive_script = drive.R
-data = HCC14F1F2.rds
+data = hepa_fibrp.rds
 sender = Hepa
 receiver = Fibro
 
