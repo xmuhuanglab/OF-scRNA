@@ -15,11 +15,10 @@ OF-scRNA is a framework designed to answer the following questions:
 ## Installation
 We wrapped the OF-scRNA framework as a command line program: **OF-scRNA.py**<br />
 You can download it via:
+<div align=center>
+<img src="https://user-images.githubusercontent.com/95668602/173772517-da6ce32d-f0db-4f65-877e-f62578e9d2df.png" width="400px"/>
+</div>
 
-
-```bash
-git clone https://github.com/xmuhuanglab/OF-scRNA.git
-```
 We also wrapped the docker image for the program to run:
 ```bash
 docker pull huaqianghuang/of-scrna:0.1
