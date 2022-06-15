@@ -15,6 +15,8 @@ OF-scRNA is a framework designed to answer the following questions:
 ## Installation
 We wrapped the OF-scRNA framework as a command line program: **OF-scRNA.py**<br />
 You can download it via:
+
+
 ```bash
 git clone https://github.com/xmuhuanglab/OF-scRNA.git
 ```
