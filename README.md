@@ -30,6 +30,7 @@ cd OF-scRNA-main
 **Data** in https://drive.google.com/file/d/1k26hI6hjvg7WQpZf4Ps7IcTMAp1rnzYl/view?usp=sharing.
 You have to download it in OF-scRNA-main folder and unzip it via:
 ```bash
+# You may need to modify file permissions
 tar -zvxf data.tgz
 ```
 
