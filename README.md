@@ -203,27 +203,7 @@ python OF-scRNA.py findccc -p ./parameters/parameters.txt
 <img src="https://user-images.githubusercontent.com/95668602/173576366-44d5f4ba-27c0-487f-b6c2-2f3f22dde12d.png" width="500px"><img src="https://user-images.githubusercontent.com/95668602/173576558-b5aabb5c-6d1b-41d6-8cb9-1edd13826182.png" width="500px">
 </div>
 
-#### 2.5 Regulation
-
-To investigate whether hepatocytes can induce reprogramming of onco-fetal cells
-
-**Input:**
-
-Seurat object, total cells, have log normalize expression matrix, celltype label, batch label
-
-```bash
-# 8. find which celltype drive the onco-fetal reprogramming
-python OF-scRNA.py drive -p ./parameters/parameters.txt
-```
-
-**output:** /4.CCC/
-
-**Hepa_Fibro_ligand_activity_target.pdf**: Heatmap shows the regulatory potential of hepatocyte's gene regulate fibroblast gene
-<div align="center">
-<img src="https://s2.loli.net/2022/05/12/X2Vw3ShGKbDnyB4.png">
-</div>
-
-#### 2.6 Trajectory inference
+#### 2.5 Trajectory inference
 
 To investigate the potetion origin of onco-fetal cells
 
@@ -251,7 +231,7 @@ python OF-scRNA.py trajectory -p ./parameters/parameters.txt
 
 **scvelo_diff_genes.csv**: The differentially regulated genes of each subtpye
 
-#### 2.7 Clinical relevance of onco-fetal cells
+#### 2.6 Clinical relevance of onco-fetal cells
 
 To inverstigate the clinical relevance of onco-fetal cells
 
