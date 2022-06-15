@@ -22,17 +22,20 @@ and unzip the file
 
 ```bash
 unzip OF-scRNA-main.zip
-```
 
-We also wrapped the docker image for the program to run:
-```bash
-docker pull huaqianghuang/of-scrna:0.1
+# enter the folder
+cd OF-scRNA-main
 ```
 
 **Data** in https://drive.google.com/file/d/1k26hI6hjvg7WQpZf4Ps7IcTMAp1rnzYl/view?usp=sharing.
 You have to download it in OF-scRNA-main folder and unzip it via:
 ```bash
 tar -zvxf data.tgz
+```
+
+We also wrapped the docker image for the program to run:
+```bash
+docker pull huaqianghuang/of-scrna:0.1
 ```
 
 ## Usage
