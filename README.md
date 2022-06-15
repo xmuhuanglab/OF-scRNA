@@ -37,7 +37,7 @@ docker pull huaqianghuang/of-scrna:0.1
 
 ```bash
 # -v host_folder:container_folder  | Mount the host folder
-docker run --name=of -dit -p 8001:8001 -h of --restart unless-stopped -v [/host_folder]:/cluster/huanglab/hhuang/project/Cancer_dev/Liver/OF-scRNA/ huaqianghuang/of-scrna
+docker run --name=of -dit -p 8001:8001 -h of --restart unless-stopped -v [/host_folder]:/cluster/huanglab/hhuang/project/Cancer_dev/Liver/OF-scRNA/ huaqianghuang/of-scrna:0.1
 
 # Now you enter the container
 docker exec -it of bash
