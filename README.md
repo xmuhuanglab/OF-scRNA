@@ -100,7 +100,7 @@ Anndata object, have log normalize expression matrix, high variable genes and PC
 python OF-scRNA.py findoncofetal -p ./parameters/parameters.txt
 ```
 
-**output:** /1.Identification/
+**Output:** /1.Identification/
 
 **FindOncofetal.pdf**: Heatmap display relative enrichment score and connectivity score
 <div align=center>
@@ -128,7 +128,7 @@ Anndata object, have log normalize expression matrix, high variable genes, PCA, 
 python OF-scRNA.py findgene -p ./parameters/parameters.txt
 ```
 
-**output:** /2.Gene/
+**Output:** /2.Gene/
 
 **top50-markers-jaccard.pdf**: Jaccard similarity (top) of top50 markers from fetal enriched subtypes (y axis) with top50 markers of tumor or adjacent normal enriched subtypes (x axis)
 
@@ -164,7 +164,7 @@ To better understand the onset of embryonic reprogramming of tumor cells and fin
 python OF-scRNA.py findgrn -p ./parameters/parameters.txt
 ```
 
-**output:** /3.GRN
+**Output:** /3.GRN
 
 **correlation-heatmap.pdf**: Correlation of binary regulon activity percentage between each subtype. 
 <div align="center">
@@ -191,7 +191,7 @@ tumor_data, normal_data, fetal_data: seurat object, have log normalize expressio
 python OF-scRNA.py findccc -p ./parameters/parameters.txt
 ```
 
-**output:** /4.CCC/
+**Output:** /4.CCC/
 
 **tumor.cellchat.orig.rds, normal.cellchat.orig.rds, fetal.cellchat.orig.rds**: The CellChat object created at the beginning
 
@@ -227,7 +227,7 @@ metadata.csv: cellinfo, such as subtype label
 python OF-scRNA.py trajectory -p ./parameters/parameters.txt
 ```
 
-**output:** /5.Trajectory/
+**Output:** /5.Trajectory/
 
 **scvelo_velocity.png**: Steady state RNA velocity of tumor and adjacent normal fibroblasts
 <div align="center">
@@ -251,7 +251,7 @@ To inverstigate the clinical relevance of onco-fetal cells
 python OF-scRNA.py clinical -p ./parameters/parameters.txt
 ```
 
-**output:** /6.Clinical/
+**Output:** /6.Clinical/
 
 **oncofetal-gsva-TCGA-KM-plot.pdf**: Kaplan-Meier curves for overall survival of HCC patients in the TCGA ( cohort stratified by GSVA score of mCAF onco-fetal signature. The p value was calculated by the log-rank test.
 <div align="center">
