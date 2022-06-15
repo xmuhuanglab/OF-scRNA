@@ -31,6 +31,7 @@ cd OF-scRNA-main
 You have to download it in OF-scRNA-main folder and unzip it via:
 ```bash
 # You may need to modify file permissions
+# chmod 750 data.tgz
 tar -zvxf data.tgz
 ```
 
