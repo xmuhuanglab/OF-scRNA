@@ -20,7 +20,7 @@ git clone https://github.com/xmuhuanglab/OF-scRNA.git
 ```
 We also wrapped the docker image for the program to run:
 ```bash
-docker.io/huaqianghuang/of-scrna:0.1
+docker pull huaqianghuang/of-scrna:0.1
 ```
 
 ## Usage
