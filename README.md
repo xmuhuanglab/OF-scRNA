@@ -4,7 +4,7 @@
 <img src="https://user-images.githubusercontent.com/95668602/173569851-05147ce0-347a-4c2d-98f8-c3e753ac05c9.png" width="400px"/>
 </div>
 
-**A framework to identify and characterize oncofetal cells of tumor microenvironment based on single-cell RNA sequencing: a case study for hepatocellular carcinoma**
+**A framework for identifying and characterizing onco-fetal cells from tumor microenvironment based on single-cell RNA sequencing: a case study for hepatocellular carcinoma**
 
 ## Overview
 OF-scRNA is a framework designed to answer the following questions:
